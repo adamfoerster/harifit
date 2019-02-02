@@ -1,12 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs *ngIf="core.user; else showLogin">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="weight">
+      <ion-icon name="flash"></ion-icon>
+      <ion-label>Weight</ion-label>
+    </ion-tab-button>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
-</ion-content>
+    <ion-tab-button tab="john">
+      <ion-icon name="apps"></ion-icon>
+      <ion-label>John</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="settings">
+      <ion-icon name="send"></ion-icon>
+      <ion-label>Settings</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<ng-template #showLogin>
+    <button (click)="core.login()">Login</button>
+</ng-template>

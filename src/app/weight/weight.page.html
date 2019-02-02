@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ month }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <div *ngIf="(objService.myObjective$ | async) as objective; else notFound"> -->
+  <ion-item>
+    <ion-label>Seu objetivo é</ion-label>
+    <ion-input
+      type="number"
+      [value]="objective?.weight | number: '1.2-2'"
+      text-right
+      readonly
+    ></ion-input
+    >kg
+  </ion-item>
+  <ion-item>
+    <ion-label>Seu peso mês passado</ion-label>
+    <ion-input
+      type="number"
+      [value]="(objective?.progress)[previousMonth] | number: '1.2-2'"
+      text-right
+      readonly
+    ></ion-input
+    >kg
+  </ion-item>
+  <ion-item>
+    <ion-label>Seu peso neste mês</ion-label>
+    <ion-input
+      type="number"
+      [(ngModel)]="currentWeight"
+      (keyup)="calculateProgress()"
+      text-right
+    ></ion-input
+    >kg
+  </ion-item>
+  <ion-item>
+    <ion-label>Progresso</ion-label>
+    <ion-input
+      type="number"
+      [value]="currentProgress | number: '1.2-2'"
+      text-right
+      readonly
+    ></ion-input
+    >kg
+  </ion-item>
+  <br />
+  <ion-button
+    color="primary"
+    expand="full"
+    (click)="objService.setMonthProgress(currentWeight)"
+    >Gravar Peso Deste Mês</ion-button
+  >
+  <!-- </div> -->
+  <ng-template #notFound> <p>Not Found</p> </ng-template>
+</ion-content>
