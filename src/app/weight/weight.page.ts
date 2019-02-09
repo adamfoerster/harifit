@@ -19,10 +19,19 @@ export class WeightPage implements OnInit {
   constructor(public objService: ObjectiveService) { }
 
   ngOnInit() {
-    this.objService.myObjective$.subscribe(obj => this.objective = obj);
+    this.getObjective();
   }
 
   calculateProgress() {
     this.currentProgress = this.objective.progress[this.previousMonth] - this.currentWeight;
+  }
+
+  getObjective() {
+    this.objService.myObjective$.subscribe(obj => {
+      this.objective = obj;
+      this.currentWeight = obj.progress[this.previousMonth + 1]
+        ? obj.progress[this.previousMonth + 1]
+        : obj.progress[this.previousMonth];
+    });
   }
 }

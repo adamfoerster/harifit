@@ -5,7 +5,11 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <div *ngIf="(objService.myObjective$ | async) as objective; else notFound"> -->
+  <app-graph
+    *ngIf="objective"
+    [objective]="objective?.weight"
+    [progress]="objective?.progress"
+  ></app-graph>
   <ion-item>
     <ion-label>Seu objetivo é</ion-label>
     <ion-input

@@ -21,6 +21,8 @@ npm-debug.log*
 coverage/
 www/
 node_modules/
+harifit-initial/node_modules/
+harifit-initial/dist/
 tmp/
 temp/
 platforms/
