@@ -1,5 +1,4 @@
-import * as functions from 'firebase-functions';
-
+export { api, basicHTTP } from './get-john';
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
