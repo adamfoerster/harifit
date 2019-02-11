@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { WeightPage } from './weight.page';
 import { GraphComponent } from './graph/graph.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxChartsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [WeightPage, GraphComponent, FormComponent]

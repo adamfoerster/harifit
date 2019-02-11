@@ -22,6 +22,8 @@ coverage/
 www/
 dist/
 node_modules/
+harifit-initial/node_modules/
+harifit-initial/dist/
 tmp/
 temp/
 platforms/
