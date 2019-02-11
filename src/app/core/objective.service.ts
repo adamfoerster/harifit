@@ -43,6 +43,6 @@ export class ObjectiveService {
           .set(objectiveToBeSet)
           .then(_ => this.core.removeLoading());
       })
-    ).subscribe();
+    );
   }
 }

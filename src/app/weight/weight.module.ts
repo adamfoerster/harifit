@@ -25,6 +25,6 @@ const routes: Routes = [
     NgxChartsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [WeightPage, GraphComponent, FormComponent]
+  declarations: [WeightPage, GraphComponent, FormComponent],
 })
 export class WeightPageModule {}

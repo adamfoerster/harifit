@@ -3,26 +3,53 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Observable } from 'rxjs';
 import { User } from 'firebase';
-import { first, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { LoadingController } from '@ionic/angular';
+import {
+  first,
+  filter,
+  debounceTime,
+  distinctUntilChanged
+} from 'rxjs/operators';
+import { LoadingController, PopoverController } from '@ionic/angular';
 
 @Injectable()
 export class CoreService {
   user: User;
   loading: any;
+  dialog: any;
 
-  constructor(public fireAuth: AngularFireAuth, public loadingCtrl: LoadingController) {
-    this.fireAuth.user.pipe(
-      distinctUntilChanged((user, prev) => JSON.stringify(user) === JSON.stringify(prev)),
-      debounceTime(200),
-    ).subscribe(user => this.user = user);
+  constructor(
+    public fireAuth: AngularFireAuth,
+    public loadingCtrl: LoadingController,
+    public popoverCtrl: PopoverController
+  ) {
+    this.fireAuth.user
+      .pipe(
+        distinctUntilChanged(
+          (user, prev) => JSON.stringify(user) === JSON.stringify(prev)
+        ),
+        debounceTime(200)
+      )
+      .subscribe(user => (this.user = user));
   }
 
   async presentLoading() {
     this.loading = await this.loadingCtrl.create({
-      message: 'Carregando...',
+      message: 'Carregando...'
     });
     return await this.loading.present();
+  }
+
+  async createDialog(component) {
+    this.dialog = await this.popoverCtrl.create({
+      component: component,
+      translucent: true,
+    });
+    await this.dialog.present();
+    return this.dialog.onDidDismiss();
+  }
+
+  closeDialog() {
+    this.dialog.dismiss();
   }
 
   removeLoading() {
