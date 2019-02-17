@@ -9,10 +9,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../../environments/environment';
 import { CoreService } from './core.service';
 import { IonicModule } from '@ionic/angular';
-import { ProgressDialogComponent } from './progress-dialog/progress-dialog.component';
 
 @NgModule({
-  declarations: [ProgressDialogComponent],
+  declarations: [],
   imports: [
     CommonModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -25,6 +24,6 @@ import { ProgressDialogComponent } from './progress-dialog/progress-dialog.compo
     ObjectiveService,
     CoreService
   ],
-  entryComponents: [ProgressDialogComponent]
+  entryComponents: []
 })
 export class CoreModule { }

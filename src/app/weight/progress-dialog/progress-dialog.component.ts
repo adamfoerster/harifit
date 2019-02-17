@@ -3,6 +3,7 @@ import { ObjectiveService } from 'src/app/core/objective.service';
 import * as dayjs from 'dayjs';
 import { Objective } from 'src/app/interfaces';
 import { CoreService } from 'src/app/core/core.service';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-progress-dialog',
@@ -16,7 +17,8 @@ export class ProgressDialogComponent implements OnInit {
   currentWeight = 0;
   currentProgress = 0;
 
-  constructor(public core: CoreService, public objService: ObjectiveService) { }
+  constructor(public core: CoreService, public objService: ObjectiveService, 
+    public popoverCtrl: PopoverController) { }
 
   ngOnInit() {
   }
@@ -33,7 +35,7 @@ export class ProgressDialogComponent implements OnInit {
   setProgress(weight) {
     this.objService.setMonthProgress(weight).subscribe(_ => {
       this.getObjective();
-      this.core.closeDialog();
+      this.popoverCtrl.dismiss();
     });
   }
 

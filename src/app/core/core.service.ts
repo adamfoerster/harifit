@@ -9,18 +9,16 @@ import {
   debounceTime,
   distinctUntilChanged
 } from 'rxjs/operators';
-import { LoadingController, PopoverController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Injectable()
 export class CoreService {
   user: User;
   loading: any;
-  dialog: any;
 
   constructor(
     public fireAuth: AngularFireAuth,
     public loadingCtrl: LoadingController,
-    public popoverCtrl: PopoverController
   ) {
     this.fireAuth.user
       .pipe(
@@ -37,19 +35,6 @@ export class CoreService {
       message: 'Carregando...'
     });
     return await this.loading.present();
-  }
-
-  async createDialog(component) {
-    this.dialog = await this.popoverCtrl.create({
-      component: component,
-      translucent: true,
-    });
-    await this.dialog.present();
-    return this.dialog.onDidDismiss();
-  }
-
-  closeDialog() {
-    this.dialog.dismiss();
   }
 
   removeLoading() {

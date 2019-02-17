@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import * as dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { CoreService } from '../core/core.service';
-import { ProgressDialogComponent } from '../core/progress-dialog/progress-dialog.component';
+import { ProgressDialogComponent } from './progress-dialog/progress-dialog.component';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-weight',
@@ -19,8 +20,13 @@ export class WeightPage implements OnInit {
   previousMonth = new Date().getMonth();
   currentWeight = 0;
   currentProgress = 0;
+  dialog: any;
 
-  constructor(public core: CoreService, public objService: ObjectiveService) {}
+  constructor(
+    public core: CoreService,
+    public objService: ObjectiveService,
+    public popoverCtrl: PopoverController
+  ) {}
 
   ngOnInit() {
     this.getObjective();
@@ -36,9 +42,7 @@ export class WeightPage implements OnInit {
   }
 
   progressDialog() {
-    this.core
-      .createDialog(ProgressDialogComponent)
-      .then(_ => this.getObjective());
+    this.createDialog(ProgressDialogComponent).then(_ => this.getObjective());
   }
 
   getObjective() {
@@ -55,5 +59,21 @@ export class WeightPage implements OnInit {
     this.objService
       .setMonthProgress(weight)
       .subscribe(_ => this.getObjective());
+  }
+
+  async createDialog(component) {
+    this.dialog = await this.popoverCtrl.create({
+      component: component,
+      translucent: true
+    });
+    await this.dialog.present();
+    return this.dialog.onDidDismiss();
+  }
+
+  closeDialog() {
+    if (!this.dialog) {
+      return null;
+    }
+    this.dialog.dismiss();
   }
 }

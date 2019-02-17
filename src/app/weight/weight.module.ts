@@ -9,6 +9,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { WeightPage } from './weight.page';
 import { GraphComponent } from './graph/graph.component';
 import { FormComponent } from './form/form.component';
+import { ProgressDialogComponent } from './progress-dialog/progress-dialog.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     NgxChartsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [WeightPage, GraphComponent, FormComponent],
+  declarations: [WeightPage, GraphComponent, FormComponent, ProgressDialogComponent],
+  entryComponents: [ProgressDialogComponent]
 })
 export class WeightPageModule {}
