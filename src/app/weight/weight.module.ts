@@ -26,7 +26,12 @@ const routes: Routes = [
     NgxChartsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [WeightPage, GraphComponent, FormComponent, ProgressDialogComponent],
+  declarations: [
+    WeightPage,
+    GraphComponent,
+    FormComponent,
+    ProgressDialogComponent
+  ],
   entryComponents: [ProgressDialogComponent]
 })
 export class WeightPageModule {}

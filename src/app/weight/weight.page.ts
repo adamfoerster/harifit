@@ -51,8 +51,8 @@ export class WeightPage implements OnInit {
       this.currentWeight = obj.progress[this.previousMonth + 1]
         ? obj.progress[this.previousMonth + 1]
         : obj.progress[this.previousMonth];
+      this.calculateProgress();
     });
-    this.calculateProgress();
   }
 
   setProgress(weight) {

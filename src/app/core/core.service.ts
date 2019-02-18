@@ -51,4 +51,8 @@ export class CoreService {
   login() {
     this.fireAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
   }
+
+  logout() {
+    this.fireAuth.auth.signOut();
+  }
 }
