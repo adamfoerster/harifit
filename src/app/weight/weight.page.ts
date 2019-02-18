@@ -1,18 +1,18 @@
 import { Objective } from './../interfaces';
 import { ObjectiveService } from './../core/objective.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import * as dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { CoreService } from '../core/core.service';
 import { ProgressDialogComponent } from './progress-dialog/progress-dialog.component';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, IonInput } from '@ionic/angular';
 
 @Component({
   selector: 'app-weight',
   templateUrl: './weight.page.html',
   styleUrls: ['./weight.page.scss']
 })
-export class WeightPage implements OnInit {
+export class WeightPage implements OnInit, OnDestroy {
   month: string = dayjs(new Date())
     .locale('pt-br')
     .format('MMMM');
@@ -21,6 +21,8 @@ export class WeightPage implements OnInit {
   currentWeight = 0;
   currentProgress = 0;
   dialog: any;
+  intFocus: any;
+  @ViewChild('weight') weight: IonInput;
 
   constructor(
     public core: CoreService,
@@ -75,5 +77,12 @@ export class WeightPage implements OnInit {
       return null;
     }
     this.dialog.dismiss();
+    this.intFocus = setInterval(_ => this.weight.setFocus(), 300);
+  }
+
+  ngOnDestroy() {
+    if (this.intFocus) {
+      clearInterval(this.intFocus);
+    }
   }
 }

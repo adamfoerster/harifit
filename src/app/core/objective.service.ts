@@ -28,6 +28,7 @@ export class ObjectiveService {
   setMonthProgress(weight) {
     this.core.presentLoading();
     const currentMonth = new Date().getMonth() + 1;
+    // weight = parseFloat(weight.replace(',', '.'));
     return this.myObjective$.pipe(
       switchMap(obj => {
         const objectiveToBeSet = {

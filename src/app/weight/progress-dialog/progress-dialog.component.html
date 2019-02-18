@@ -1,9 +1,11 @@
 <div padding>
   <h1>Qual o seu peso atual?</h1>
   <ion-input
+    #weight
     type="number"
     color="primary"
     text-right
+    (keyup.enter)="setProgress(currentWeight)"
     [(ngModel)]="currentWeight"
     class="weight"
   ></ion-input>
