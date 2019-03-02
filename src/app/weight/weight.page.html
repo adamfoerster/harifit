@@ -33,9 +33,11 @@
   <ion-item>
     <ion-label>Seu peso neste mês</ion-label>
     <ion-input
+      #weight
       type="number"
       [(ngModel)]="currentWeight"
       (keyup)="calculateProgress()"
+      (keyup.enter)="setProgress(currentWeight)"
       text-right
     ></ion-input
     >kg
