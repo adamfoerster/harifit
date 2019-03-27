@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { first, switchMap, tap } from 'rxjs/operators';
+import { first, switchMap, tap, filter } from 'rxjs/operators';
 import { Objective } from '../interfaces';
 import { Observable } from 'rxjs';
 import { CoreService } from './core.service';
+import { User } from 'firebase';
 
 @Injectable()
 export class ObjectiveService {
-
-  constructor(private db: AngularFirestore, private core: CoreService) { }
+  constructor(private db: AngularFirestore, private core: CoreService) {}
 
   get objectives$(): Observable<Objective[]> {
     return this.db
@@ -18,11 +18,18 @@ export class ObjectiveService {
   }
 
   get myObjective$(): Observable<Objective> {
-    return this.db
-      .collection('objectives')
-      .doc<Objective>(this.core.user.email)
-      .valueChanges()
-      .pipe(first());
+    return this.core.user$
+      .pipe(
+        filter(u => !!u),
+        first(),
+        switchMap((user: User) =>
+          this.db
+            .collection('objectives')
+            .doc<Objective>(user.email)
+            .valueChanges()
+        ),
+        first()
+      );
   }
 
   setMonthProgress(weight) {

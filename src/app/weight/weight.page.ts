@@ -1,6 +1,13 @@
 import { Objective } from './../interfaces';
 import { ObjectiveService } from './../core/objective.service';
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import * as dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import { CoreService } from '../core/core.service';
@@ -10,7 +17,8 @@ import { PopoverController, IonInput } from '@ionic/angular';
 @Component({
   selector: 'app-weight',
   templateUrl: './weight.page.html',
-  styleUrls: ['./weight.page.scss']
+  styleUrls: ['./weight.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeightPage implements OnInit, OnDestroy {
   month: string = dayjs(new Date())
@@ -27,7 +35,8 @@ export class WeightPage implements OnInit, OnDestroy {
   constructor(
     public core: CoreService,
     public objService: ObjectiveService,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -41,6 +50,7 @@ export class WeightPage implements OnInit, OnDestroy {
     }
     this.currentProgress =
       this.objective.progress[this.previousMonth] - this.currentWeight;
+    this.cdr.detectChanges();
   }
 
   progressDialog() {

@@ -9,9 +9,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../../environments/environment';
 import { CoreService } from './core.service';
 import { IonicModule } from '@ionic/angular';
+import { GraphComponent } from './graph/graph.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    GraphComponent
+  ],
   imports: [
     CommonModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -24,6 +27,7 @@ import { IonicModule } from '@ionic/angular';
     ObjectiveService,
     CoreService
   ],
-  entryComponents: []
+  entryComponents: [],
+  exports: [ GraphComponent ]
 })
 export class CoreModule { }
