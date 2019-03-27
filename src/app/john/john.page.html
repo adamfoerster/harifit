@@ -5,6 +5,11 @@
 </ion-header>
 
 <ion-content padding>
+  <app-graph
+  *ngIf="objective"
+    [objective]="objective?.weight"
+    [progress]="objective?.progress"
+  ></app-graph>
   <p>
     O legendário guru do marketing por dados finalmente revelou seu peso e
     objetivo para este ano.

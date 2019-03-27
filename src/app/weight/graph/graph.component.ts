@@ -10,8 +10,7 @@ import 'dayjs/locale/pt-br';
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent implements OnInit {
   @Input()
