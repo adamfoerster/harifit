@@ -15,6 +15,7 @@ import { Chart } from 'chart.js';
 })
 export class GraphComponent implements OnInit {
   chart: Chart;
+  @Input() id = 'canvas';
   @Input()
   set progress(months) {
     if (months === this._prevProgress) {
@@ -78,7 +79,7 @@ export class GraphComponent implements OnInit {
   ngOnInit() {
     const months = this._prevProgress;
     const diff = ((months[1] ? months[1] : 100) - this.objective) / 11;
-    this.chart = new Chart('canvas', {
+    this.chart = new Chart(this.id, {
       type: 'line',
       data: {
         labels: [

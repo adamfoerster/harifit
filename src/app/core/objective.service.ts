@@ -18,18 +18,25 @@ export class ObjectiveService {
   }
 
   get myObjective$(): Observable<Objective> {
-    return this.core.user$
-      .pipe(
-        filter(u => !!u),
-        first(),
-        switchMap((user: User) =>
-          this.db
-            .collection('objectives')
-            .doc<Objective>(user.email)
-            .valueChanges()
-        ),
-        first()
-      );
+    return this.core.user$.pipe(
+      filter(u => !!u),
+      first(),
+      switchMap((user: User) =>
+        this.db
+          .collection('objectives')
+          .doc<Objective>(user.email)
+          .valueChanges()
+      ),
+      first()
+    );
+  }
+
+  get john$(): Observable<Objective> {
+    return this.db
+      .collection('john')
+      .doc<Objective>('hariken')
+      .valueChanges()
+      .pipe(first());
   }
 
   setMonthProgress(weight) {

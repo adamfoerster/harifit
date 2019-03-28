@@ -1,4 +1,4 @@
-import { WeightPageModule } from './../weight/weight.module';
+import { CoreModule } from './../core/core.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -6,25 +6,23 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { JohnPage } from './john.page';
-import { CoreModule } from '../core/core.module';
+import { ChallengePage } from './challenge.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: JohnPage
+    component: ChallengePage
   }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    CoreModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    WeightPageModule
+    CoreModule,
+    RouterModule.forChild(routes)
   ],
-  declarations: [JohnPage]
+  declarations: [ChallengePage]
 })
-export class JohnPageModule {}
+export class ChallengePageModule {}

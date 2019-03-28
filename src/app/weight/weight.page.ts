@@ -59,6 +59,7 @@ export class WeightPage implements OnInit, OnDestroy {
 
   getObjective() {
     this.objService.myObjective$.subscribe(obj => {
+      console.log(obj);
       this.objective = obj;
       this.currentWeight = obj.progress[this.previousMonth + 1]
         ? obj.progress[this.previousMonth + 1]

@@ -10,10 +10,12 @@ import { environment } from '../../environments/environment';
 import { CoreService } from './core.service';
 import { IonicModule } from '@ionic/angular';
 import { GraphComponent } from './graph/graph.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    GraphComponent
+    GraphComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,6 @@ import { GraphComponent } from './graph/graph.component';
     CoreService
   ],
   entryComponents: [],
-  exports: [ GraphComponent ]
+  exports: [ GraphComponent, PageNotFoundComponent ]
 })
 export class CoreModule { }

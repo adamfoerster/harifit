@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
+import { PageNotFoundComponent } from '../core/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../john/john.module#JohnPageModule'
+            loadChildren: '../challenge/challenge.module#ChallengePageModule'
           }
         ]
       },
@@ -45,6 +46,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/home/weight',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

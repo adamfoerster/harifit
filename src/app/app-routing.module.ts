@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'verify-email', loadChildren: './verify-email/verify-email.module#VerifyEmailPageModule' },
   { path: 'forgot-password', loadChildren: './forgot-password/forgot-password.module#ForgotPasswordPageModule' },
   { path: 'verify-password', loadChildren: './verify-password/verify-password.module#VerifyPasswordPageModule' },
+  { path: 'challenge', loadChildren: './challenge/challenge.module#ChallengePageModule' },
 ];
 
 @NgModule({

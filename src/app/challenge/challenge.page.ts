@@ -3,11 +3,11 @@ import { Objective } from '../interfaces';
 import { ObjectiveService } from '../core/objective.service';
 
 @Component({
-  selector: 'app-john',
-  templateUrl: './john.page.html',
-  styleUrls: ['./john.page.scss']
+  selector: 'app-challenge',
+  templateUrl: './challenge.page.html',
+  styleUrls: ['./challenge.page.scss'],
 })
-export class JohnPage implements OnInit {
+export class ChallengePage implements OnInit {
   objective: Objective;
   currentWeight = 0;
   currentProgress = 0;
@@ -16,11 +16,12 @@ export class JohnPage implements OnInit {
   constructor(public objService: ObjectiveService) {}
 
   ngOnInit() {
-    // this.getObjective();
+    this.getObjective();
   }
 
   getObjective() {
-    this.objService.myObjective$.subscribe(obj => {
+    this.objService.john$.subscribe(obj => {
+      console.log(obj);
       this.objective = obj;
       this.currentWeight = obj.progress[this.previousMonth + 1]
         ? obj.progress[this.previousMonth + 1]
@@ -36,4 +37,5 @@ export class JohnPage implements OnInit {
     this.currentProgress =
       this.objective.progress[this.previousMonth] - this.currentWeight;
   }
+
 }
